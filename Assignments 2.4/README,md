@@ -1,0 +1,13 @@
+Ideal vs Real Diode (LTspice DC Sweep)
+
+Circuit: V1 → 1 kΩ → diode → GND  
+Sweep: .dc V1 0 15 0.1
+
+What I did
+I simulated the same series diode circuit twice in LTspice. In the first schematic I used an “ideal” diode model (zero forward drop and very low ON resistance). In the second schematic I used a practical diode model (1N4148). For both cases I ran a DC sweep on V1 and plotted the diode current.
+
+Comparison
+
+The biggest visible difference is the turn-on voltage. The ideal diode begins to conduct almost immediately once the source voltage increases above 0 V, so the current rises quickly and is mainly limited by the 1 kΩ resistor. In contrast, the 1N4148 shows a clear forward threshold: current stays small at low voltages and then increases rapidly around roughly 0.6–0.7 V. After conduction begins, the real diode still has a forward drop that changes with current, so it does not behave like a perfect short circuit.
+
+Ideal models are still useful because they make circuit behavior easy to understand and allow quick hand calculations without complex exponential equations. However, ideal models become inaccurate in low-voltage circuits, precision bias networks, and when power dissipation or switching behavior matters, because real diodes have forward voltage, leakage current, and non-ideal effects.
